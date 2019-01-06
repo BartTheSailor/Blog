@@ -20,12 +20,13 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all 
-    render
+
   end
   
   
   def show
     @article = Article.find(params[:id])
+    @comment = @article.comments.new
     #render
   end
 
