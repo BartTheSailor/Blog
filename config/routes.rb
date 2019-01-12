@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # get 'pictures/index'
+  # get 'pictures/new'
+  # get 'pictures/create'
+  # get 'pictures/edit'
+  # get 'pictures/update'
+  # get 'pictures/show'
+  # get 'pictures/destroy'
   devise_for :users
   # get 'comments/create'
   # get 'comments/edit'
@@ -9,6 +16,8 @@ Rails.application.routes.draw do
   resources :articles do 
 
     resources :comments, only: [:create, :edit, :update, :destroy]
+    resources :pictures #, only: [:index, :show, :edit, :update, :create, :destroy, :new] -mamy 7 akcji,
+    # nie musimy pisać żadnej z only
     
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

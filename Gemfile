@@ -64,3 +64,7 @@ gem 'simple_form'
 gem 'devise'
 
 gem 'cancancan'
+
+gem 'carrierwave'
+
+gem 'mini_magick'
