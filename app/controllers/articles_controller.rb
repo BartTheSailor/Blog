@@ -1,12 +1,17 @@
 class ArticlesController < ApplicationController
+
+  before_action :authenticate_user!, except: [:index, :show]
+
   def new
-    @article = Article.new
+    @article = current_user.articles.new
+    authorize! :new, @article
     render #uznanie ze praca kontrolera zostala zakonczona, wziecie widoku 
   end
 
   def create
     #binding.pry
     @article = Article.new(article_params)
+    @article.user = current_user
     if @article.save
       flash[:success] = t('articles.create.success')
       redirect_to article_path(@article.id)
@@ -19,23 +24,27 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all 
+    @articles = Article.accessible_by(current_ability, :edit)
+    render 
 
   end
   
   
   def show
     @article = Article.find(params[:id])
+    authorize! :show, @article 
     @comment = @article.comments.new
     #render
   end
 
   def edit
     @article = Article.find(params[:id])
+    authorize! :edit, @article
   end
 
   def update
     @article = Article.find(params[:id])
+    authorize! :update, @article 
     if @article.update(article_params)
       flash[:success] = t('articles.update.success')
       redirect_to article_path(@article.id)

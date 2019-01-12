@@ -1,5 +1,8 @@
 <h1><%= @article.title %></h1>
 
+<% if @article.user %>
+	<h3><%= t('articles.show.author', defaut: 'Autor') %>: <%= @article.user.email %></h3>
+<% end %>
 <p>
 	<%= @article.text %>
 </p>
