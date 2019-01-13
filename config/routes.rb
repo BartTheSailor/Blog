@@ -16,7 +16,10 @@ Rails.application.routes.draw do
   resources :articles do 
 
     resources :comments, only: [:create, :edit, :update, :destroy]
-    resources :pictures #, only: [:index, :show, :edit, :update, :create, :destroy, :new] -mamy 7 akcji,
+    resources :pictures do
+      resources :comments, only: [:create, :edit, :update, :destroy]
+    end
+    #, only: [:index, :show, :edit, :update, :create, :destroy, :new] -mamy 7 akcji,
     # nie musimy pisać żadnej z only
     
   end
