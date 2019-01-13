@@ -1,19 +1,32 @@
 class CommentsController < ApplicationController
+# TODO zdefiniować i wykorzystać abilities
+
   before_action :load_article
 
   def create
+    if params[:picture_id].present?
+      @picture = @article.pictures.find(params[:picture_id])
+    end
     
-    @comment = @article.comments.new(comment_params)
+    @comment = (@picture || @article).comments.new(comment_params)
     if @comment.save
       flash[:success] = t('comments.create.success')
-      redirect_to article_path(@article.id)
+    
+      if @picture.present?
+        redirect_to article_picture_path(@article.id, @picture.id)
+      else
+        redirect_to article_path(@article.id)
+      end
     else
       flash.now[:error] = t(
         'comments.create.error',
         problems: @article.errors.full_messages.to_sentence
       )
-      render 'articles/show'
-
+      if @picture.present?
+        render 'pictures/show'
+      else
+        render 'articles/show'
+      end
     end
 end
 
