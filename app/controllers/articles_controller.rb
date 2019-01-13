@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.accessible_by(current_ability, :edit)
+    @articles = Article.accessible_by(current_ability, :index)
     render 
 
   end

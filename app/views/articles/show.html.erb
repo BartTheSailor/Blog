@@ -3,6 +3,10 @@
 <% if @article.user %>
 	<h3><%= t('articles.show.author', defaut: 'Autor') %>: <%= @article.user.email %></h3>
 <% end %>
+
+<%= link_to t('articles.show.gallery', default: 'Galeria'), article_pictures_path(@article) %>
+<%= link_to t('articles.show.new', default: 'Dodaj zdjęcia '), new_article_picture_path(@article) %>
+
 <p>
 	<%= @article.text %>
 </p>
