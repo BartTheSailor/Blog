@@ -7,12 +7,12 @@ class PicturesController < ApplicationController
 
   def new
     @article = Article.find(params[:article_id])
-    @picture = @article.picture.new
+    @picture = @article.pictures.new
     authorize! :new, @picture 
   end
 
   def create
-    @article = Article.fnd(params[:article_id])
+    @article = Article.find(params[:article_id])
     @picture = @article.pictures.new(picture_params)
     authorize! :create, @picture 
     @picture.save!
@@ -29,5 +29,12 @@ class PicturesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def picture_params
+    params.require(:picture).permit( :title, :description, :image)
+    
   end
 end
