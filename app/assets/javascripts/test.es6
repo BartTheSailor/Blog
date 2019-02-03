@@ -25,3 +25,15 @@ const getWeather = (e) => {
 	}, 10000);
 }
 window.addEventListener('load', getWeather)
+
+window.addEventListener('load', (e) => {
+	navElem = document.querySelector('nav');
+
+	navElem.addEventListener('mouseover', (e) => {
+		navElem.style.opacity = 0.5;
+	});
+
+	navElem.addEventListener('mouseout', (e) => {
+		navElem.style.opacity = 1.0;
+	});
+})
