@@ -1,0 +1,21 @@
+%h1= t 'articles.edit.title'
+= render partial:'form', locals: {url: article_path(@article.id)}
+/
+  <haml_loud>form_for @article, url: article_path(@article.id) do |f| </haml_loud><haml_block>
+  <p>
+  <haml_loud> f.label :title</haml_loud><br>
+  <haml_loud> f.text_field :title </haml_loud>
+  </p>
+  <p>
+  <haml_loud> f.label :text</haml_loud><br>
+  <haml_loud> f.text_area :text </haml_loud>
+  </p>
+  <p>
+  <haml_loud> f.submit</haml_loud>
+  </p>
+  </haml_block>
+  
+  <p>
+  <haml_loud> @article.text </haml_loud>
+  </p>
+= link_to t('articles.edit.index_link'), articles_path
