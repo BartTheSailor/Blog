@@ -1,7 +1,7 @@
 <h1><%= t 'articles.index.title' %></h1>
 
 
-<table>
+<table class="table">
 	<% @articles.each do |article| %>
 		<% if can?( :read, article) %>
 
