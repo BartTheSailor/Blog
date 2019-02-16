@@ -84,3 +84,7 @@ gem 'jquery-rails'
 gem 'babel-transpiler'
 
 gem 'sprockets', '~> 4.0.0.beta2'
+
+gem 'sidekiq'
+
+gem 'sidekiq-cron'

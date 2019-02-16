@@ -1,3 +1,6 @@
+require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
   # get 'pictures/index'
   # get 'pictures/new'
@@ -12,6 +15,8 @@ Rails.application.routes.draw do
   # get 'comments/update'
   # get 'comments/destroy'
   root to: 'welcome#index'
+
+  mount Sidekiq::Web => '/sidekiq'
 
   resources :articles do 
 
