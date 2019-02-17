@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # get 'pictures/update'
   # get 'pictures/show'
   # get 'pictures/destroy'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   # get 'comments/create'
   # get 'comments/edit'
   # get 'comments/update'
